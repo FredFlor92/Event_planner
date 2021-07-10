@@ -1,0 +1,22 @@
+<h1> Guest Form</h1>
+
+<%= form_with(model: @guest, url: [@invite, @guest], local: true) do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %>
+<br>
+
+<%= f.label :age, "Age(number)" %>
+<%= f.text_field :age %>
+<br>
+
+<%= f.label :gender %>
+<%= f.select :gender, [ 'Male','Female' ], :prompt => 'Gender' %>
+<br>
+
+<%= f.submit "Create an account as a guest" %>
+<% end %>
+<% if @guest.errors.any? %>
+  <% @guest.errors.full_messages.each do |m| %>
+    <p class="danger"><%= m %></p>
+  <% end %>
+<% end %>

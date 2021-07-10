@@ -1,0 +1,22 @@
+<div class="boxed">
+<ul>
+  <li>Party Name: <%= @party.name %></li>
+  <li>Description: <%= @party.description %></li>
+  <li>Location: <%= @party.location %></li>
+  <li>Date & Time: <%= @party.strf_time %></li>
+  <li>Hosted by: <%= @party.host.name %></li>
+<ul>
+</div>
+
+<%= link_to "Back to Party List", parties_path %>
+<% if user_type == "Host" && @party.host == current_user && @party != nil %>
+  <%= link_to "Edit Party", edit_host_party_path(current_user, @party) %>
+<% end %>
+<% if user_type == "Host" && @party.host == current_user && @party != nil %>
+  <%= form_tag party_path(@party), method: "delete" do %>
+    <%= submit_tag "Delete Party" %>
+  <% end %>
+<% end %>
+<% if user_type == "Guest" && !@party.guests.include?(current_user) %>
+  <%= link_to "Join this party!", new_party_invite_path(@party) %>
+<% end %>
