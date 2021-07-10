@@ -1,0 +1,16 @@
+<h1> Host Sign Up Form </h1>
+
+<%= form_with(model: @host, url: [@party, @host], local: true) do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %>
+
+<br><br>
+<%= f.submit "Create an account as a host" %>
+<% end%>
+
+<% if @host.errors.any? %>
+    <%= @host.errors.full_messages.each do |e|%>
+    <p class="danger"><<%= e %></p>
+<% end %>
+
+<% end %>

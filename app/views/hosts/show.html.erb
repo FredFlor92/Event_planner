@@ -1,0 +1,23 @@
+<h1><%= "#{@host.name}" %>'s Home Page </h1>
+
+<% @parties.each do |party| %>
+<div class="boxed">
+    <ul>
+    <li>Party Name: <%= link_to "#{party.name}", party_path(party.id) %></li>
+    <li>Description: <%= party.description %></li>
+    <li>Location: <%= party.location %></li>
+    <li>Date & Time: <%= party.strf_time %></li>
+    </ul>
+     <% if user_type == "Host" && @host == current_user && @party != nil %>
+    <%= link_to "Edit Party", edit_host_party_path(@host, @party.id) %>
+  <% end %>
+  <% if user_type == "Host" && @host == current_user && @party != nil %>
+    <%= form_tag party_path(@party.id), method: "delete" do %>
+      <%= submit_tag "Delete Party" %>
+    <% end %>
+  <% end %>  
+
+  </div>
+<% end %>
+ 
+<%= link_to "Back to Party List", parties_path %>

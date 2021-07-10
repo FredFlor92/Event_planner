@@ -10,12 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_09_000241) do
+ActiveRecord::Schema.define(version: 2021_07_09_003016) do
 
   create_table "guests", force: :cascade do |t|
     t.string "name"
     t.integer "age"
     t.string "gender"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "hosts", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "invites", force: :cascade do |t|
+    t.integer "guest_id"
+    t.integer "host_id"
+    t.boolean "rsvp"
+    t.integer "add_on"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "members", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "parties", force: :cascade do |t|
+    t.string "name"
+    t.string "location"
+    t.datetime "date_time"
+    t.string "description"
+    t.integer "host_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
